@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Local Service Contacts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --primary: #007BFF;
+      --bg: #f4f6f9;
+      --text: #333;
+      --card-bg: #ffffff;
+      --border: #ddd;
+      --header-bg: #e9ecef;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 1rem;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    label {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    select {
+      padding: 0.6rem;
+      font-size: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background-color: var(--card-bg);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+    }
+
+    th, td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--header-bg);
+      font-weight: bold;
+    }
+
+    a.phone-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a.phone-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile Styles */
+    @media screen and (max-width: 600px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        margin-bottom: 1rem;
+        background-color: var(--card-bg);
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+      }
+
+      td {
+        display: flex;
+        justify-content: space-between;
+        border: none;
+        padding: 0.6rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #555;
+      }
+
+      td:last-child {
+        border-bottom: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔧 Local Service Contacts</h1>
+
+  <label for="filter">Filter by Work Type:</label>
+  <select id="filter" onchange="filterTable()">
+    <option value="all">Show All</option>
+    <option value="Electrician">Electrician</option>
+    <option value="Carpenter">Carpenter</option>
+    <option value="Plumber">Plumber</option>
+  </select>
+
+  <table id="contactsTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone Number</th>
+        <th>Work Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="Name">Ravi Kumar</td>
+        <td data-label="Phone Number"><a href="tel:+919876543210" class="phone-link">+91-9876543210</a></td>
+        <td data-label="Work Type">Electrician</td>
+      </tr>
+      <tr>
+        <td data-label="Name">Manoj Yadav</td>
+        <td data-label="Phone Number"><a href="tel:+919123456789" class="phone-link">+91-9123456789</a></td>
+        <td data-label="Work Type">Carpenter</td>
+      </tr>
+      <tr>
+        <td data-label="Name">Ajay Sharma</td>
+        <td data-label="Phone Number"><a href="tel:+919988776655" class="phone-link">+91-9988776655</a></td>
+        <td data-label="Work Type">Plumber</td>
+      </tr>
+      <tr>
+        <td data-label="Name">Suresh Gupta</td>
+        <td data-label="Phone Number"><a href="tel:+919012345678" class="phone-link">+91-9012345678</a></td>
+        <td data-label="Work Type">Electrician</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    function filterTable() {
+      const filterValue = document.getElementById('filter').value;
+      const rows = document.querySelectorAll("#contactsTable tbody tr");
+
+      rows.forEach(row => {
+        const workType = row.cells[2].textContent.trim();
+        row.style.display = (filterValue === "all" || workType === filterValue) ? "" : "none";
+      });
+    }
+  </script>
+  <div style="margin-top: 2rem; font-size: 0.9rem; color: #555; background: #fff8dc; padding: 1rem; border-left: 4px solid #ffc107; border-radius: 5px;">
+  <strong>Disclaimer:</strong> The contact details listed above are provided for the convenience of residents. The association is not responsible for the quality, pricing, conduct, or availability of the vendors. Please verify independently before engaging any services.
+</div>
+
+
+</body>
+</html>
+
