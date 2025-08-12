@@ -1,1 +1,1 @@
-Vendor List
+Contact List
