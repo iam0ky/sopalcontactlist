@@ -2,129 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Local Service Contacts</title>
+  <title>☎️ Essential Contacts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-04TRXV8S46"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', '{{GA4_MEASUREMENT_ID}}');
+  </script>
+
   <style>
-    :root {
-      --primary: #007BFF;
-      --bg: #f4f6f9;
-      --text: #333;
-      --card-bg: #ffffff;
-      --border: #ddd;
-      --header-bg: #e9ecef;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 1rem;
-      background-color: var(--bg);
-      color: var(--text);
-    }
-
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      color: var(--primary);
-    }
-
-    label {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-
-    select {
-      padding: 0.6rem;
-      font-size: 1rem;
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      width: 100%;
-      max-width: 300px;
-      margin-bottom: 1rem;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-      background-color: var(--card-bg);
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
-    }
-
-    th, td {
-      padding: 0.9rem 1rem;
-      border-bottom: 1px solid var(--border);
-      text-align: left;
-    }
-
-    th {
-      background-color: var(--header-bg);
-      font-weight: bold;
-    }
-
-    a.phone-link {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    a.phone-link:hover {
-      text-decoration: underline;
-    }
-
-    /* Mobile Styles */
+    :root { --primary: #007BFF; --bg: #ffffff; --text: #222; --card-bg: #ffffff; --border: #ddd; --header-bg: #e9ecef; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 1rem; background-color: var(--bg); color: var(--text); }
+    h1 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--primary); }
+    label { font-size: 1rem; margin-bottom: 0.5rem; display: block; }
+    select { padding: 0.6rem; font-size: 1rem; border: 1px solid var(--border); border-radius: 5px; width: 100%; max-width: 300px; margin-bottom: 1rem; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; background-color: var(--card-bg); border-radius: 6px; overflow: hidden; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); }
+    th, td { padding: 0.9rem 1rem; border-bottom: 1px solid var(--border); text-align: left; }
+    th { background-color: var(--header-bg); font-weight: bold; }
+    a.phone-link { color: var(--primary); text-decoration: none; font-weight: bold; }
+    a.phone-link:hover { text-decoration: underline; }
     @media screen and (max-width: 600px) {
-      table, thead, tbody, th, td, tr {
-    display: block;
-    width: 100%;
-     }
-
-   thead {
-    display: none;
+      table, thead, tbody, th, td, tr { display: block; width: 100%; }
+      thead { display: none; }
+      tr { margin-bottom: 1rem; background-color: var(--card-bg); border-radius: 8px; padding: 1rem; box-shadow: 0 0 6px rgba(0, 0, 0, 0.05); }
+      td { display: block; padding: 0.6rem 0; border-bottom: 1px solid var(--border); word-wrap: break-word; }
+      td::before { content: attr(data-label); display: block; font-weight: bold; color: #555; margin-bottom: 0.25rem; }
+      td:last-child { border-bottom: none; }
     }
-
-   tr {
-    margin-bottom: 1rem;
-    background-color: var(--card-bg);
-    border-radius: 8px;
-    padding: 1rem;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
-   }
-
-   td {
-    display: block;
-    padding: 0.6rem 0;
-    border-bottom: 1px solid var(--border);
-    word-wrap: break-word;
-   }
-
-   td::before {
-    content: attr(data-label);
-    display: block;
-    font-weight: bold;
-    color: #555;
-    margin-bottom: 0.25rem;
-   }
-
-   td:last-child {
-    border-bottom: none;
-  }
-}
-
   </style>
 </head>
 <body>
 
-  <h1>🔧 Local Service Contacts</h1>
+  <h1>☎️ Essential Contacts</h1>
 
   <label for="filter">Filter by Work Type:</label>
   <select id="filter" onchange="filterTable()">
     <option value="all">Show All</option>
-    <option value="Electrician">Electrician</option>
+    <option value="Association Members">Association Members</option>
+    <option value="Apartment Staff">Apartment Staff</option>
     <option value="Carpenter">Carpenter</option>
+    <option value="Car Clean">Car Clean</option>
+    <option value="Civil Work">Civil Work</option>
+    <option value="Electrician">Electrician</option>
+    <option value="Fabricator">Fabricator</option>
+    <option value="Granite Work">Granite Work</option>
     <option value="Plumber">Plumber</option>
   </select>
 
@@ -136,49 +61,96 @@
         <th>Work Type</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td data-label="Name">Ravi Kumar</td>
-        <td data-label="Phone Number"><a href="tel:+919876543210" class="phone-link">+91-9876543210</a></td>
-        <td data-label="Work Type">Electrician</td>
-      </tr>
-      <tr>
-        <td data-label="Name">Manoj Yadav</td>
-        <td data-label="Phone Number"><a href="tel:+919123456789" class="phone-link">+91-9123456789</a></td>
-        <td data-label="Work Type">Carpenter</td>
-      </tr>
-      <tr>
-        <td data-label="Name">Ajay Sharma</td>
-        <td data-label="Phone Number"><a href="tel:+919988776655" class="phone-link">+91-9988776655</a></td>
-        <td data-label="Work Type">Plumber</td>
-      </tr>
-      <tr>
-        <td data-label="Name">Suresh Gupta</td>
-        <td data-label="Phone Number"><a href="tel:+919012345678" class="phone-link">+91-9012345678</a></td>
-        <td data-label="Work Type">Electrician</td>
-      </tr>
-    </tbody>
+    <tbody></tbody>
   </table>
 
-  <script>
-    function filterTable() {
-      const filterValue = document.getElementById('filter').value;
-      const rows = document.querySelectorAll("#contactsTable tbody tr");
+  <div style="margin-top: 2rem; font-size: 0.9rem; color: #555; background: #fff8dc; padding: 1rem; border-left: 4px solid #ffc107; border-radius: 5px;">
+    <strong>Disclaimer:</strong> Vendor contact details listed above are provided for the convenience of residents. The association is not responsible for the quality, pricing, conduct, or availability of the vendors. Please verify independently before engaging any services.
+  </div>
 
+  <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #666; background: #eef6ff; padding: 0.6rem 1rem; border-left: 4px solid #339af0; border-radius: 5px;">
+    <p style="color:#444; font-size:0.9rem; margin-top:1rem;">
+      <strong>🗓️ Last Updated: <span id="last-updated"></span></strong>
+    </p>
+  </div>
+
+  <script>
+    // Encrypted JSON placeholder
+    const encrypted = {
+      salt: "rr3g2YfkOqQdLy3udiwDfw==",
+      iv: "JpcRaFbRkdXKKkj2",
+      ciphertext: "Sn+48oUtzF2HU4humOasc+bhaoEEaUYvkDUMRegh9h5SHODB6vCq2gPsfrj7zyEI20ppIxzXzW4xLimwdoKU5dGRb1ybfD4g471Jq9I3V525l5rKVzKLN/hTFOfOq3ru9PksGcy6dm064ITzlWEwleJJPEIOg5V+FDI8ppILPNNxd75x4O8bRdyxKxPfYx9GuQIfiyztlJuyCWCBo6Q1BBMEaBlOBPdwF0LomvMt4rwUT86Yt/lQFOtppvBKMU/Eofj8zHV3axaiOPmnS6YbaxTOhU8e7/m/3InspGJqSXoPZgrh/aUC7WwCeVEELA1/vHvIxZPRsEWvjVpAjoODrHMrL0uvPJRdw8A6IqxkaH8d8bPGHdrxRi5EhjxjC51YPCQsHp1BS+vptMA1CWdHF/pCYW72qwG4CiSoLqX8846nTyg31nTpJbqOYikuESDmD3/lx0dBo1te/RcCMU8l/iLbQMzk0vZ3cIRG7s6te/XMaKYI/7b4S5X8THCXz+ppz0dCqsLsfKw4E37pPWy1P+yV/bsGF5ZZgOv8jwLi6XoMva5YDup3QlQx/263Arap4EJYBeZErJtzNiO+7XQuwtxBuXBYjsNitVIlg7gXckzaCRvnGhhkz3rXEtV2Gl4z2XaXxPXJ306ecMwcNx0c37MtXnDgf7AwxLi9YuEdK0QPA6UNep12/mOIhpUjQx6C0InaTf0whVWX2Z9bVCeViw8RzfRxq5AXiDphZyAwJUXt0qUJZ05WX33eCdOFfl+snRfUPtVatQQHLeexRq6CzAtNXeJun2qDHWu6JRsfO9osI0Q15URm4mTmwmm+ANhinZXOhDN2l14J2eOqoM/h8hx0kid5qlMUrULbAlo5RkFl2JN+7fkTobUe3JRhi4wHnf/kYGov8Aj4V18wNwX3c+MpshHcEMbvOi+cKYOTjkDVWwy8nXwUNlGhHGv81DEvD1ItabtWAOOc7bx0IQb/lLGLCtNVjxTsYKUnLwGlP3PMaPvSr33TK/2EGO1iJmAjdrivknt6PHVl3OSaRBWYBIUky9LO3I40KdNXHGJ2lBlMSU1FuI3SM/ib8Qp8nJtWVPKfvT242KtAQjEzY7KZgebk6U19hQGlfwFVcvdhAi/WJffbiy2wSEzIFWhMzp8myUJ28vFSbpDSEmrKCOD6Csq00bIw2SU09E+o+a7pXhPUhOzCNOhYdC5nBeo1iPPQ2DKUC3VlfiyeMqZQa5u2VjZe2wlEKOgoxTCglsEdzKPufsH64pikeJuoYkAdPLIYlHOV3R8ShgdFFfc3tmBtGCvlN6CO2mWJjxnJgVg+fFsRc6f4IRl0tA66FIiOgn6RXLpPivfZaB1B1tKoa3mymm3OJo/iiy8C1Yngb0dTqq5rnMhBitwyTYVUCKMl9+DAI2rQpZZvFxKY6dRaGnZMsZBPZE2RzcD22GAuFAOeF6mkh2ZTu09FRZMreDGtNjI2L2/k0UMVpSCTV8AXz+GqP2k9uk+LYU86BrUmqCQRn8WRP5qmbpL4fKCEkcYq3D2le5E7XcnZCUscK9WjPlYrcdIvDnR8agpSVlUyeoumikrePcnXhB+LJik+Nf3eY9UHklN+0adv8SZltQFxaaHtd5dCfw5Q0PE2Ahh5GCEsO5/peX4qnqrOqm54cLJSmQrzOWGrmK6lsqrvzntXdALdr/Ese8HrqYv/PZ1EkU6WVAH7rMOUluT3oiaNu5I3ZK0lLRyYiHW8k4aR4e/MxZIabF214EyDI7qVmyIM22ee3R7YdOOCuUR9/HX5iLxPr3I6PL+jPjV15BE4vMKLAUASL23F3hvIHwaP5ppOiWt8PDaDzcOGS73OA8kCkNNpHWFGK2cHvVZfnC2SVtJKkTx0etQQUMZWVN5Olo5EPxayJ1qpdrQhozwYDurUch1aPFjNLhYUwtJdyJYrh11fdLHw4kbY3Zh9YwO5W4xY1w9gMWTNCC/vRhhADvSigeHEfqL7czFHk0kWWaQpMcaGY7rbdkMtgY3HBlLdfVHNfa8oxunFQgk41jOvwWXecdtLoqUqGapilpHAEf1BS5YSL7GZ8OpaYycF/BIdgTycjVRGjZB3ryOQC9Ob5uc/xKyCaPO/sS9WMPZW5xqM2mr0pzsq9y9jmLhmThY+2iODSd7oY2l49RmMK4zmdRbt9mrnjDvGI/SgAvslTXnV90gVgZ0Z6l0ETDakNwgXpwyL8QR4WlX7Fv2CudH8GZL0LGFqiHE+KX7wELtBR/LKw40l+4l+VJrozdfARE3yUlzWRtf2QI9UaesqvsCxbcUPPhS9mv/eeiRt7dsJvZHa5TTIIrA/NrRMU92C/ns5kf76EaG9g+TBOA5MdeX3BVkz6V2nKHLQgRZzowoL8Z3inLBYbSBOuIqGwNBD9gPOdv/mA4z2A+7YvyNwJpnnn2cu+mZvOGjWqwjh/gcgToZdN11OmjdTiBUPuC/A4Gb84a8=",
+      iterations: 200000
+    };
+
+    function b64ToArr(b64){ return Uint8Array.from(atob(b64), c => c.charCodeAt(0)); }
+    function arrToStr(buf){ return new TextDecoder().decode(buf); }
+
+    async function deriveKey(password, salt_b64, iterations){
+      const salt = b64ToArr(salt_b64);
+      const pwUtf8 = new TextEncoder().encode(password);
+      const baseKey = await crypto.subtle.importKey('raw', pwUtf8, {name:'PBKDF2'}, false, ['deriveKey']);
+      return crypto.subtle.deriveKey(
+        { name: 'PBKDF2', salt: salt, iterations: iterations, hash: 'SHA-256' },
+        baseKey,
+        { name: 'AES-GCM', length: 256 },
+        false,
+        ['decrypt']
+      );
+    }
+
+    async function decryptData(password){
+      const key = await deriveKey(password, encrypted.salt, encrypted.iterations);
+      const iv = b64ToArr(encrypted.iv);
+      const ct = b64ToArr(encrypted.ciphertext);
+      const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, ct);
+      return arrToStr(plain);
+    }
+
+    async function loadContacts(){
+      const decrypted = await decryptData("internal_key_for_contacts");
+      const data = JSON.parse(decrypted);
+
+      document.getElementById("last-updated").textContent = data.lastUpdated;
+      const tbody = document.querySelector("#contactsTable tbody");
+      tbody.innerHTML = "";
+
+      data.contacts.forEach(contact => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td data-label="Name">${contact.name}</td>
+          <td data-label="Phone Number">
+            <a href="tel:${contact.phone}" class="phone-link" data-name="${contact.name}" data-phone="${contact.phone}">
+              ${contact.phone}
+            </a>
+          </td>
+          <td data-label="Work Type">${contact.workType}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // Add click tracking
+      document.querySelectorAll(".phone-link").forEach(link => {
+        link.addEventListener("click", function() {
+          gtag('event', 'contact_click_to_call', {
+            contact_name: this.getAttribute("data-name"),
+            phone_number: this.getAttribute("data-phone")
+          });
+        });
+      });
+    }
+
+    function filterTable(){
+      const filterValue = document.getElementById('filter').value.toLowerCase();
+      gtag('event', 'filter_contact_worktype', { selected_work_type: filterValue });
+      const rows = document.querySelectorAll("#contactsTable tbody tr");
       rows.forEach(row => {
-        const workType = row.cells[2].textContent.trim();
+        const workType = row.cells[2].textContent.trim().toLowerCase();
         row.style.display = (filterValue === "all" || workType === filterValue) ? "" : "none";
       });
     }
+
+    loadContacts();
   </script>
-  <div style="margin-top: 2rem; font-size: 0.9rem; color: #555; background: #fff8dc; padding: 1rem; border-left: 4px solid #ffc107; border-radius: 5px;">
-  <strong>Disclaimer:</strong> The contact details listed above are provided for the convenience of residents. The association is not responsible for the quality, pricing, conduct, or availability of the vendors. Please verify independently before engaging any services.
-</div>
-  <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #666; background: #eef6ff; padding: 0.6rem 1rem; border-left: 4px solid #339af0; border-radius: 5px;">
-  📅 Last updated: <span id="last-updated">17-7-2025</span>
-</div>
-
-
 </body>
 </html>
-
